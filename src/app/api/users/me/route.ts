@@ -7,7 +7,7 @@ connect();
 
 export async function POST(request: NextRequest){
     const userId = await getDataFromToken(request)
-    const user = User.findById({_id: userId}).select("-password")
+    const user = await User.findById({_id: userId}).select("-password")
 
     return NextResponse.json({
         message: "User fetched successfully",
